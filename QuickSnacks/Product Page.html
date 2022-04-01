@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blogs</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="./image/favicon.ico" rel="icon">
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: 'Merriweather', serif;
+    }
+    
+    body {
+        line-height: 1.5;
+    }
+    
+    .card-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    
+    img {
+        width: 100%;
+        display: block;
+    }
+    
+    .img-display {
+        overflow: hidden;
+    }
+    
+    .img-showcase {
+        display: flex;
+        width: 100%;
+        transition: all 0.5s ease;
+    }
+    
+    .img-showcase img {
+        min-width: 100%;
+    }
+    
+    .img-select {
+        display: flex;
+    }
+    
+    .img-item {
+        margin: 0.3rem;
+    }
+    
+    .img-item:nth-child(1),
+    .img-item:nth-child(2),
+    .img-item:nth-child(3) {
+        margin-right: 0;
+    }
+    
+    .img-item:hover {
+        opacity: 0.8;
+    }
+    
+    .product-content {
+        padding: 2rem 1rem;
+        height: 500px;
+        width: 500px;
+    }
+    
+    .product-title {
+        font-size: 5rem;
+        text-transform: capitalize;
+        font-weight: 700;
+        position: relative;
+        color: #A0CC39;
+        margin: 1rem 0;
+    }
+    
+    .product-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 4px;
+        width: 80px;
+        background: #12263a;
+    }
+    
+    .product-link {
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 2rem;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        background: #A0CC39;
+        color: black;
+        padding: 0 1rem;
+        transition: all 0.5s ease;
+    }
+    
+    .product-link:hover {
+        opacity: 0.9;
+    }
+    
+    .product-rating {
+        color: #ffc107;
+    }
+    
+    .product-rating span {
+        font-weight: 600;
+        color: #252525;
+    }
+    
+    .product-price {
+        margin: 1rem 0;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    
+    .product-price span {
+        font-weight: 400;
+    }
+    
+    .last-price span {
+        color: #f64749;
+        text-decoration: line-through;
+    }
+    
+    .new-price span {
+        color: black;
+    }
+    
+    .product-detail h2 {
+        text-transform: capitalize;
+        color: #12263a;
+        padding-bottom: 0.6rem;
+    }
+    
+    .product-detail p {
+        font-size: 1.5rem;
+        padding: 0.3rem;
+        opacity: 0.8;
+    }
+    
+    .product-detail ul {
+        margin: 1rem 0;
+        font-size: 1.5rem;
+    }
+    
+    .product-detail ul li {
+        margin: 0;
+        list-style: none;
+        background: url(shoes_images/checked.png) left center no-repeat;
+        background-size: 18px;
+        padding-left: 1.7rem;
+        margin: 0.4rem 0;
+        font-weight: 600;
+        opacity: 0.9;
+    }
+    
+    .product-detail ul li span {
+        font-weight: 400;
+    }
+    
+    .purchase-info {
+        margin: 1.5rem 0;
+    }
+    
+    .purchase-info input,
+    .purchase-info .btn {
+        border: 1.5px solid #ddd;
+        border-radius: 25px;
+        text-align: center;
+        padding: 0.45rem 0.8rem;
+        outline: 0;
+        margin-right: 0.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .purchase-info input {
+        width: 60px;
+    }
+    
+    .purchase-info .btn {
+        cursor: pointer;
+        color: #fff;
+    }
+    
+    .purchase-info .btn:first-of-type {
+        background: #A0CC39;
+    }
+    
+    .purchase-info .btn:last-of-type {
+        background: #f64749;
+    }
+    
+    .purchase-info .btn:hover {
+        opacity: 0.9;
+    }
+    
+    .social-links {
+        display: flex;
+        align-items: center;
+    }
+    
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        color: #000;
+        border: 1px solid #000;
+        margin: 0 0.2rem;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.5s ease;
+    }
+    
+    .social-links a:hover {
+        background: #000;
+        border-color: transparent;
+        color: #fff;
+    }
+    
+    @media screen and (min-width: 992px) {
+        .card {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1.5rem;
+        }
+        .card-wrapper {
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-imgs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .product-content {
+            padding-top: 0;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- header section starts  -->
+
+    <header class="header">
+
+        <a href="home.html" class="logo"> <img src="./image/logo.png" alt=""></a>
+
+        <nav class="navbar">
+            <a href="home.html">home</a>
+            <a href="shop.html">shop
+                <div class="sub-menu">
+                    <ul>
+                        <li>Healthy Snacks</li>
+                        <li>Sancks for Kids</li>
+                        <li>Easy on Stomach</li>
+                        <li>Smoothies</li>
+                    </ul>
+                </div>
+            </a>
+            <a href="about.html">about</a>
+            <a href="review.html">review</a>
+            <a href="blog.html">blog</a>
+            <a href="contact.html">contact</a>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="cart-btn" class="fas fa-shopping-cart"></div>
+            <div id="login-btn" class="fas fa-user"></div>
+        </div>
+
+        <form action="" class="search-form">
+            <input type="search" placeholder="search here..." id="search-box">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/cart-1.jpg" alt="">
+                <div class="content">
+                    <h3>Roasted Pictachio</h3>
+                    <span class="quantity">1</span>
+                    <span class="multiply">x</span>
+                    <span class="price">Rs.299</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/cart-2.jpg" alt="">
+                <div class="content">
+                    <h3>Low Fat Yougurt (strawberry)</h3>
+                    <span class="quantity">1</span>
+                    <span class="multiply">x</span>
+                    <span class="price">Rs.199</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/cart-3.jpg" alt="">
+                <div class="content">
+                    <h3>Mint Smoothie</h3>
+                    <span class="quantity">1</span>
+                    <span class="multiply">x</span>
+                    <span class="price">Rs.99</span>
+                </div>
+            </div>
+            <h3 class="total"> total : <span>Rs.597</span> </h3>
+            <a href="#" class="btn">checkout cart</a>
+        </div>
+
+
+        <form action="" class="login-form">
+            <h3>login form</h3>
+            <input type="email" placeholder="enter your email" class="box">
+            <input type="password" placeholder="enter your password" class="box">
+            <div class="remember">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me">remember me</label>
+            </div>
+            <input type="submit" value="login now" class="btn">
+            <p>forget password? <a href="#">click here</a></p>
+            <p>don't have an account? <a href="#">create one</a></p>
+        </form>
+
+    </header>
+
+    <!-- header section ends -->
+
+    <div class="heading">
+        <h1>our blogs</h1>
+        <p> <a href="home.html">home >></a> blogs </p>
+    </div>
+
+
+
+    <!-- PRODUCT SECTION START -->
+    <section class="products">
+        <h1 class="title"> Delicious <span>Smoothies</span> <a href="#">view all >></a> </h1>
+
+
+        <div class="card-wrapper">
+            <div class="card">
+                <!-- card left -->
+                <div class="product-imgs">
+                    <div class="img-display">
+                        <div class="img-showcase">
+                            <img src="./image/shoe_1.jpg" alt="shoe image">
+                            <img src="./image/shoe_2.jpg" alt="shoe image">
+                            <img src="./image/shoe_3.jpg" alt="shoe image">
+                            <img src="./image/shoe_4.jpg" alt="shoe image">
+                        </div>
+                    </div>
+                    <div class="img-select">
+                        <div class="img-item">
+                            <a href="#" data-id="1">
+                                <img src="./image/shoe_1.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="2">
+                                <img src="./image/shoe_2.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="3">
+                                <img src="./image/shoe_3.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="4">
+                                <img src="./image/shoe_4.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- card right -->
+                <div class="product-content">
+                    <h2 class="product-title">Mint Smoothie</h2>
+                    <a href="#" class="product-link">View More Smothies</a>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.7(21)</span>
+                    </div>
+
+                    <div class="product-price">
+                        <p class="new-price">Price: <span>Rs.99/-</span></p>
+                    </div>
+
+                    <div class="product-detail">
+                        <h2>Recipe: </h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!
+                        </p>
+                        <p>Mint, Milk, Yougurt, Sugar, Water</p>
+                        <ul>
+                            <li>Flavour: <span>Mint</span></li>
+                            <li>Available: <span>in stock</span></li>
+                            <li>Category: <span>Shoes</span></li>
+                            <li>Shipping Area: <span>All over the world</span></li>
+                            <li>Shipping Fee: <span>Free</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="purchase-info">
+                        <input type="number" min="0" value="1">
+                        <button type="button" class="btn">
+                            Add to Cart <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button type="button" class="btn">Compare</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="home.html"> <i class="fas fa-arrow-right"></i> home</a>
+                <a href="shop.html"> <i class="fas fa-arrow-right"></i> shop</a>
+                <a href="about.html"> <i class="fas fa-arrow-right"></i> about</a>
+                <a href="review.html"> <i class="fas fa-arrow-right"></i> review</a>
+                <a href="contact.html"> <i class="fas fa-arrow-right"></i> contact</a>
+            </div>
+
+            <div class="box">
+                <h3>Our Location</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> North Nazimabad </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Gulshan e Iqbal </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Tariq Road </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Clifton</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> P.E.C.H.S </a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+                <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+            </div>
+
+            <div class="box">
+                <h3>newsletter</h3>
+                <p>subscribe for latest updates</p>
+                <form action="">
+                    <input type="email" placeholder="enter your email">
+                    <input type="submit" value="subscribe" class="btn">
+                </form>
+                <img src="image/payment.png" class="payment" alt="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- custom css file link  -->
+    <script src="js/script.js"></script>
+
+</body>
+<script>
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = [...imgs];
+    let imgId = 1;
+
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
+    });
+
+    function slideImage() {
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
+
+    window.addEventListener('resize', slideImage);
+</script>
+
+</html>
